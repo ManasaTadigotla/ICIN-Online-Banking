@@ -1,0 +1,44 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+<app-menu></app-menu>
+        </div>
+        <div class="col-6">
+            <div class="card" *ngIf="showChequeForm">
+                <div class="card-header bg-info">
+                    Cheque Book Request Form
+                </div>
+                <div class="card-body" >
+                    <div >
+                        <form [formGroup]="requestChequeBookForm" *ngIf="showChequeForm" (ngSubmit)="sendRequest(requestChequeBookForm)">           
+                           Account Number
+                           <select formControlName="accountNumber" class="form-control"  required="true">                
+                            <option *ngFor="let userAccount of userAccountList" value="{{userAccount.accountNumber}}" >{{userAccount.accountNumber}}</option>
+                        </select> 
+                         <br />           
+                            Name:
+                            <input type="text"  formControlName="accountHolderName" class="form-control"  />                
+                            <br />
+                            Ifsc Code:
+                            <input type="text" formControlName="toIfscCode" class="form-control"  />
+                            <br />                     
+                            Branch:
+                            <input type="text" formControlName="branch" class="form-control"  />
+                            <br />  
+                            <div>                    
+                                <input type="submit"  value="Send Request"  class="btn btn-success" />
+                            </div>
+                            
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="errorOrSuccess" [innerHTML]="msg">
+                                
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

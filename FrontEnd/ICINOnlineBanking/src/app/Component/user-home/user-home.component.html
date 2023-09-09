@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <app-menu></app-menu>
+        </div>
+            <div class="col-md-10">
+                <div class="card text-left">
+                    <div class="card-header bg-info"> My Account >> Account Summary </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Account name/No</th>
+                            <th scope="col">Branch</th>
+                            <th scope="col">Balance</th>
+                            <th scope="col">Transactions</th>                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td><button  class="btn btn-link" *ngIf="!balanceShown" (click)="getBalance()" >Click here for balance</button>
+                                <p *ngIf="balanceShown">{{balance}}</p></td>
+                            <td><button class="btn btn-link" (click)="LoadTopTransactions()">Last 10 Transactions</button></td>
+                          </tr>
+                      </tbody>
+                      </table>
+                <br>
+                <div>
+                    <div *ngIf="showtransactions"  >
+                        <div class="card text-left">
+                            <div class="card-header bg-info"> My Account >> Last 10 transactions </div>
+                        </div>
+                        <div class="card-body">                        
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">DateOfTransaction</th>
+                                <th scope="col">FromAccountNumber</th>
+                                <th scope="col">ToAccountNumber</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">CurrentBalance</th>                            
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr  *ngFor="let trans of topTransactionsList">
+                               
+                                <td><b>{{trans.dateOfTransaction}}</b></td>
+                                <td>{{trans.fromAccountNumber}}</td>
+                                <td>{{trans.toAccountNumber}}</td>
+                                <td>{{trans.amount}}</td>
+                                <td>{{trans.type}}</td>
+                                <td>{{trans.currentBalance}}</td>
+                               </tr>
+                          </tbody>
+                          </table>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+        
+    </div>
+</div>

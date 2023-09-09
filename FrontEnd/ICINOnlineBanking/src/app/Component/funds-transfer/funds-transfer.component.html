@@ -1,0 +1,77 @@
+
+<div class="container">
+<div class="row">
+    <div class="col-2"><app-menu></app-menu></div>
+    <div class="col-md-6"> <div class="card">
+        <div class="card-header">
+            My Account >> Funds Transfer
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioTransfer" id="withSameBank" checked>
+                        <label class="form-check-label" for="withSameBank">
+                            with in ICIN
+                        </label>
+                      </div>
+                </div>
+                <div class="col-md-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioTransfer" id="withOtherBank" >
+                        <label class="form-check-label" for="withOtherBank">
+                            other Bank
+                        </label>
+                      </div>               
+                </div>
+                
+            </div>
+            <div class="row" *ngIf="isSameBank">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        Intra Bank Transfer
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <form [formGroup]="intraTransferForm" (ngSubmit)="saveTransaction(intraTransferForm)">           
+                                From:                               
+                                <select formControlName="fromAccount" class="form-control" >
+                                    <option value="-1">Select A/c</option>
+                                    <option *ngFor="let userAccount of userAccountList" value="{{userAccount.accountNumber}}" >{{userAccount.accountNumber}}</option>
+                                </select> 
+                                 <br />           
+                                Benificiary A/c:
+                                <input type="number" required="true"  formControlName="toAccountNumber" class="form-control" />                
+                                <br />
+                                Benificiary Name:
+                                <input type="text"  formControlName="toAccountName" class="form-control"  />                
+                                <br />
+                                Ifsc Code:
+                                <input type="text" formControlName="toIfscCode" class="form-control"  />
+                                <br />
+                                Amount:
+                                <input type="number" min="1" formControlName="amount" class="form-control" />
+                                <br />         
+                                
+                                <div>                    
+                                    <input type="submit"  value="Confirm"  class="btn btn-success" />
+                                </div>
+                                <div [innerHTML]="msg">
+                                    
+                                </div>
+                            </form>
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div></div>
+    <div class="col-md-4"></div>
+</div>
+   
+</div>
